@@ -47,9 +47,8 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select m from Member m where m.team = :team";
-            List<Member> resultList = em.createQuery(query, Member.class)
-                    .setParameter("team", teamA)
+            List<Member> resultList = em.createNamedQuery("Member.findByUsername", Member.class)
+                    .setParameter("username", "회원1")
                     .getResultList();
 
             for (Member member : resultList) {
